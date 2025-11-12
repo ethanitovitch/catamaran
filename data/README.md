@@ -6,51 +6,61 @@ This directory contains all the categories and functors that make up the Catamar
 
 ### Adding a New Category
 
-1. Create a new JSON file in `data/categories/` with the category id as the filename (e.g., `ring.json`)
+1. Create a new TypeScript file in `data/categories/` with the category id as the filename (e.g., `ring.ts`)
 2. Add the new category ID to the `CategoryId` enum in `types/enums.ts`
 3. Follow this structure:
 
-```json
-{
-  "id": "ring",
-  "name": "Ring",
-  "description": "A brief description of the category",
-  "features": [
-    "feature-1",
-    "feature-2"
+```typescript
+import { CategoryId, Feature } from "@/types/enums";
+import type { Category } from "../index";
+
+export const ringData: Category = {
+  id: CategoryId.RING,
+  name: "Ring",
+  description: "A brief description of the category",
+  features: [
+    Feature.ABELIAN,
+    Feature.ADDITIVE,
   ],
-  "links": [
+  links: [
     {
-      "title": "nLab: Ring",
-      "url": "https://ncatlab.org/nlab/show/Ring"
-    }
-  ]
-}
+      title: "nLab: Ring",
+      url: "https://ncatlab.org/nlab/show/Ring",
+    },
+  ],
+};
+
+export default ringData;
 ```
 
 4. Import and add it to the `categories` array in `data/index.ts`
 
 ### Adding a New Functor
 
-1. Create a new JSON file in `data/functors/` with a descriptive filename (e.g., `ring-to-ab.json`)
+1. Create a new TypeScript file in `data/functors/` with a descriptive filename (e.g., `ring-to-ab.ts`)
 2. Add the new functor ID to the `FunctorId` enum in `types/enums.ts`
 3. Follow this structure:
 
-```json
-{
-  "id": "ring-to-ab",
-  "name": "Forgetful",
-  "source": "ring",
-  "target": "ab",
-  "description": "A description of what this functor does",
-  "symbol": "U",
-  "links": [
+```typescript
+import { FunctorId, CategoryId } from "@/types/enums";
+import type { Functor } from "../index";
+
+export const ringToAbData: Functor = {
+  id: FunctorId.RING_TO_AB,
+  name: "Forgetful",
+  source: CategoryId.RING,
+  target: CategoryId.AB,
+  description: "A description of what this functor does",
+  symbol: "U",
+  links: [
     {
-      "title": "Reference",
-      "url": "https://example.com"
-    }
-  ]
-}
+      title: "Reference",
+      url: "https://example.com",
+    },
+  ],
+};
+
+export default ringToAbData;
 ```
 
 4. Import and add it to the `functors` array in `data/index.ts`
@@ -60,7 +70,7 @@ This directory contains all the categories and functors that make up the Catamar
 If you need to add a new structural feature:
 
 1. Add it to the `Feature` enum in `types/enums.ts`
-2. Use it in your category JSON files
+2. Use it in your category TypeScript files
 
 ### Available Features
 

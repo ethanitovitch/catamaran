@@ -104,6 +104,18 @@ export default function Sidebar({
               </button>
             )}
           </div>
+
+          {/* GitHub Link */}
+          <div className="mt-6 pt-6 border-t border-slate-200">
+            <a
+              href="https://github.com/ethanitovitch/catamaran"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-slate-600 hover:text-blue-600 transition-colors"
+            >
+              Want to add to the graph? Make a pull request on GitHub
+            </a>
+          </div>
         </div>
       </aside>
   );
