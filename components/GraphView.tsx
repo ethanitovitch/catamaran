@@ -77,7 +77,7 @@ const GraphView = forwardRef<GraphViewRef, GraphViewProps>(({
             "text-margin-y": -15,
             color: "#1e293b",
             "font-size": "16px",
-            "font-weight": "700",
+            "font-weight": "bold",
             width: 50,
             height: 50,
             "border-width": 3,
@@ -89,7 +89,6 @@ const GraphView = forwardRef<GraphViewRef, GraphViewProps>(({
           style: {
             "background-color": "#2563eb",
             "border-color": "#1e3a8a",
-            cursor: "pointer",
             width: 55,
             height: 55,
           },
@@ -107,7 +106,7 @@ const GraphView = forwardRef<GraphViewRef, GraphViewProps>(({
             "text-rotation": "autorotate",
             "text-margin-y": -12,
             color: "#475569",
-            "font-weight": "600",
+            "font-weight": "bold",
           },
         },
         {
@@ -115,7 +114,6 @@ const GraphView = forwardRef<GraphViewRef, GraphViewProps>(({
           style: {
             "line-color": "#3b82f6",
             "target-arrow-color": "#3b82f6",
-            cursor: "pointer",
             width: 4,
           },
         },
@@ -129,6 +127,31 @@ const GraphView = forwardRef<GraphViewRef, GraphViewProps>(({
     });
 
     cyRef.current = cy;
+
+    // Add cursor pointer on hover
+    cy.on("mouseover", "node", () => {
+      if (containerRef.current) {
+        containerRef.current.style.cursor = "pointer";
+      }
+    });
+
+    cy.on("mouseout", "node", () => {
+      if (containerRef.current) {
+        containerRef.current.style.cursor = "default";
+      }
+    });
+
+    cy.on("mouseover", "edge", () => {
+      if (containerRef.current) {
+        containerRef.current.style.cursor = "pointer";
+      }
+    });
+
+    cy.on("mouseout", "edge", () => {
+      if (containerRef.current) {
+        containerRef.current.style.cursor = "default";
+      }
+    });
 
     // Add click handlers
     cy.on("tap", "node", (evt) => {
